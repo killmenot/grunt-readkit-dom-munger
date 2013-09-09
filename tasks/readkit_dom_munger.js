@@ -1,5 +1,5 @@
 /*
- * grunt-dom-munger
+ * readkit-grunt-dom-munger
  * https://github.com/cgross/grunt-dom-munger
  *
  * Copyright (c) 2013 Chris Gross
@@ -31,6 +31,13 @@ module.exports = function(grunt) {
           return $(elem).attr(options.read.attribute);
         });
 
+        if (options.read.replace) {
+          var regexp = new RegExp(options.read.replace);
+          vals = vals.map(function(val){
+            return val.replace(regexp, options.read.replacewith);
+          });
+        }
+
         if (options.engine === 'jsdom'){
           vals = vals.toArray();
         }
@@ -42,8 +49,8 @@ module.exports = function(grunt) {
           });
         }
 
-        grunt.config(['dom_munger','data',options.read.writeto],vals);
-        grunt.log.writeln('Wrote ' + (options.read.selector + '.' + options.read.attribute).cyan + ' to ' + ('dom_munger.data.'+options.read.writeto).cyan);
+        grunt.config(['readkit_dom_munger','data',options.read.writeto],vals);
+        grunt.log.writeln('Wrote ' + (options.read.selector + '.' + options.read.attribute).cyan + ' to ' + ('readkit_dom_munger.data.'+options.read.writeto).cyan);
       }
     }
 
@@ -102,7 +109,12 @@ module.exports = function(grunt) {
     if (updated){
       var updatedContents;
       if (options.engine === 'cheerio'){
-        updatedContents = $.html()
+        // Readkit improvement
+        if (options.xmlMode) {
+          updatedContents = $.xml();
+        } else {
+          updatedContents = $.html();  
+        }
       } else {
         updatedContents = window.document.doctype.toString()+window.document.innerHTML;
       }
@@ -112,7 +124,7 @@ module.exports = function(grunt) {
 
   };
 
-  grunt.registerMultiTask('dom_munger', 'Read and manipulate html.', function() {
+  grunt.registerMultiTask('readkit_dom_munger', 'Read and manipulate html.', function() {
 
     var options = this.options({
       engine:'cheerio'

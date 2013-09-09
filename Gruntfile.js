@@ -1,5 +1,5 @@
 /*
- * grunt-dom-munger
+ * grunt-readkit-dom-munger
  * https://github.com/cgross/grunt-dom-munger
  *
  * Copyright (c) 2013 Chris Gross
@@ -27,7 +27,7 @@ module.exports = function(grunt) {
       tests: ['tmp'],
     },
     // Configuration to be run (and then tested).
-    dom_munger: {
+    readkit_dom_munger: {
       test: {
         options: {
           engine:'jsdom',
@@ -84,7 +84,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'dom_munger', 'concat', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'readkit_dom_munger', 'concat', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);
