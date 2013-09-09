@@ -47,7 +47,7 @@
     "jsdom": "~0.5.5"
   },
   "dependencies": {
-    "cheerio": "~0.12.0",
+    //"cheerio": "~0.12.0", // We use a local, patched version.
     "jsdom": "~0.5.5"
   },
   "readmeFilename": "README.md",
