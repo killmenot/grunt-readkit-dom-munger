@@ -21,6 +21,15 @@ to
         updatedContents = $.html();  
       }
 
+We also add the following code to allow us to specify a regExp to identify a string to be replaced with a supplied value
+
+        if (options.read.replace) {
+          var regexp = new RegExp(options.read.replace);
+          vals = vals.map(function(val){
+            return val.replace(regexp, options.read.replacewith);
+          });
+        }
+
 ### Parser.js
 
 In ```node_modules/grunt-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js``` comment out the meta reference in ```voidElements```, otherwise we end up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
@@ -30,6 +39,10 @@ In ```node_modules/grunt-dom-munger/node_modules/cheerio/node_modules/htmlparser
       //  meta: true,
       ...
       };
+
+### jsDom
+
+We remove jsDOM, as this is an optional dependency and not needed for Readk.it purposes.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
