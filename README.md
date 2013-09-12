@@ -4,9 +4,10 @@
 
 This task is a patched version of [grunt-dom-munger](https://github.com/cgross/grunt-dom-munger), created in order to support [Readk.it](http://readk.it) requirements:
 
+## Patched code
 Specifically, the patched code is as follows:
 
-1. dom_munger.js
+### dom_munger.js
 
 In the function ```processFile``` in ```node_modules/grunt-dom-munger/tasks/dom_munger.js``` change:
 
@@ -20,7 +21,7 @@ to
         updatedContents = $.html();  
       }
 
-1. Parser.js
+### Parser.js
 
 In ```node_modules/grunt-dom-munger/node_modules/cheerio/node_modules/htmlparser2/lib/Parser.js``` comment out the meta reference in ```voidElements```, otherwise we end up with broken meta tags in the opf file (specifically, meta tags that have both an opening and a closing tag lose their closing tag):
 
