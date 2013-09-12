@@ -1,6 +1,6 @@
 # grunt-readkit-dom-munger
 
-> Read and manipulate HTML documents with jsdom+jquery or cheerio.
+> Read and manipulate HTML documents with cheerio.
 
 This task is a patched version of [grunt-dom-munger](https://github.com/cgross/grunt-dom-munger), created in order to support [Readk.it](http://readk.it) requirements:
 
