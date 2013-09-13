@@ -43,9 +43,8 @@
     "html",
     "jquery"
   ],
-  "optionalDependencies": {
-  },
   "dependencies": {
+    "cheerio": "~0.12.0"
   },
   "readmeFilename": "README.md",
   "_id": "grunt-readkit-dom-munger@2.0.1",
