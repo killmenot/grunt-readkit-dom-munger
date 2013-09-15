@@ -49,10 +49,14 @@ module.exports = function(grunt) {
           });
         }
 
-        var writeto = grunt.config.get(['readkit_dom_munger','data',options.read.writeto]);
-        writeto = writeto && writeto.length && vals.length ? writeto.concat(vals) : writeto && writeto.length ? writeto : vals;
+        var writeto;
+        if (options.read.concatenate) {
+          writeto = grunt.config.get(['readkit_dom_munger','data',options.read.writeto]);
+          writeto = writeto && writeto.length && vals.length ? writeto.concat(vals) : writeto && writeto.length ? writeto : vals;
+        } else {
+          writeto = vals;
+        }
         grunt.verbose.writeln(('writeto: ' + writeto).cyan);
-
         grunt.config(['readkit_dom_munger','data',options.read.writeto],writeto);
         grunt.log.writeln('Wrote ' + (options.read.selector + '.' + options.read.attribute).cyan + ' to ' + ('readkit_dom_munger.data.'+options.read.writeto).cyan);
       }
