@@ -2,3 +2,4 @@ jsdom
 npm-debug.log
 tmp
 node_modules
+*.sublime-*
